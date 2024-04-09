@@ -3,9 +3,10 @@ import { Entity, PrimaryGeneratedColumn, Column, Index, OneToMany, BeforeInsert 
 import bcrypt from "bcryptjs";
 import Post from "./Post";
 import Vote from "./Vote";
+import BaseEntity from './Entity'
 
 @Entity("users ")
-export class User {
+export class User extends BaseEntity {
 
     @Index()
     @IsEmail(undefined, {message: "Wrong Email format"})
@@ -15,7 +16,7 @@ export class User {
 
     @Index()
     @Length(3, 32, {message: "User name should be more than 3 letters"})
-    @Column()
+    @Column({ unique: true })
     username: string
 
     @Column()
