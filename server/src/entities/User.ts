@@ -1,6 +1,8 @@
 import { IsEmail, Length } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, Column, Index, OneToMany, BeforeInsert } from "typeorm"
 import bcrypt from "bcryptjs";
+import Post from "./Post";
+import Vote from "./Vote";
 
 @Entity("users ")
 export class User {
@@ -14,13 +16,13 @@ export class User {
     @Index()
     @Length(3, 32, {message: "User name should be more than 3 letters"})
     @Column()
-    userName: string
+    username: string
 
     @Column()
     @Length(6,255, {message: "Password should be more than 6 letters"})
     password: string
 
-    @OneToMany(() => IsPostalCode, (post) => post.user)
+    @OneToMany(() => Post, (post) => post.user)
     posts: Post[]
 
     @OneToMany(() => Vote, (vote) => vote.user)
