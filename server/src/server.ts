@@ -9,7 +9,7 @@ app.use(morgan('dev'));
 
 app.get("/", (_, res) => res.send("running"));
 
-let port = 4000;
+let port = 3001;
 app.listen(port, async () => {
   console.log(`server runniung at http://localhost:${port}`);
 
